@@ -1,0 +1,396 @@
+/* Reset cơ bản */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+body { background-color: #dbe4eb; }
+
+/* =========================================
+   KHUNG ỨNG DỤNG (RẤT QUAN TRỌNG)
+   ========================================= */
+.app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #f4f9fd;
+    height: 100vh; /* Bắt buộc để khóa chiều cao bằng màn hình */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative; /* Giữ cho thanh bottom-nav không bị văng ra ngoài */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Ép các phần tử bên trên không bị bóp méo khi màn hình nhỏ */
+.main-header, .banner, .ticker-box, .auth-tabs, .category-nav-wrapper {
+    flex-shrink: 0;
+}
+img { max-width: 100%; display: block; }
+
+/* =========================================
+   1. HEADER
+   ========================================= */
+.main-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 5px 10px; height: 55px;
+    background-image: url('images/header.gif');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.icon-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; justify-content: center; align-items: center; }
+.icon-btn img { width: 32px; height: auto; object-fit: contain; }
+.logo { flex: 1; text-align: center; }
+.logo img { height: 35px; margin: 0 auto; object-fit: contain; }
+
+/* =========================================
+   2. BANNER & 3. TICKER & 4. AUTH TABS
+   ========================================= */
+.banner { width: 100%; overflow: hidden; position: relative; background-color: #fff; }
+.banner-track { display: flex; width: 100%; transition: transform 0.5s ease-in-out; }
+.banner-track img { width: 100%; flex-shrink: 0; object-fit: cover; }
+
+.ticker-box { display: flex; align-items: center; padding: 5px 10px; background-color: #e5f5f9; color: #00a2b8; font-size: 13px; }
+.ticker-box marquee { flex: 1; margin: 0 10px; color: #333; }
+
+.auth-tabs { display: flex; }
+.auth-tabs button { flex: 1; padding: 12px 0; font-weight: bold; font-size: 14px; border: none; cursor: pointer; }
+.btn-register { background-color: #e6f7fa; color: #008b9c; }
+.btn-login { background-color: #00a2b8; color: #fff; }
+
+/* =========================================
+   5. MENU DANH MỤC NGANG
+   ========================================= */
+.category-nav-wrapper {
+    position: relative; display: flex; align-items: center;
+    background: linear-gradient(to bottom, #34c4e6, #098fac); 
+    border-bottom: 2px solid #06728a;
+}
+.nav-arrow {
+    background: rgba(0, 0, 0, 0.1); border: none; color: white; height: 100%; width: 20px;
+    position: absolute; top: 0; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.left-arrow { left: 0; }
+.right-arrow { right: 0; }
+
+.category-nav {
+    display: flex; overflow-x: auto; color: white; white-space: nowrap; scroll-behavior: smooth;
+    margin: 0 20px; width: 100%; position: relative;
+}
+.category-nav::-webkit-scrollbar { display: none; }
+
+.cat-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 10px 5px; font-size: 12px; font-weight: bold; cursor: pointer; min-width: 22%; position: relative; height: 100%;
+}
+.cat-item i { font-size: 22px; margin-bottom: 4px; text-shadow: 0px 1px 2px rgba(0,0,0,0.2); }
+.cat-item span { display: block; line-height: 1.2; }
+
+/* Trạng thái Active có mũi tên chỉ xuống */
+.cat-item.active { background: linear-gradient(to bottom, #ffffff, #c3eff8); color: #008b9c; }
+.cat-item.active::after {
+    content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+    border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #c3eff8; z-index: 11;
+}
+
+/* =========================================
+   6. KHU VỰC CHỨA GAME (CUỘN ĐƯỢC)
+   ========================================= */
+.game-area {
+    flex: 1; /* Tự động kéo dài lấp đầy màn hình */
+    overflow-y: auto; /* Kích hoạt cuộn dọc độc lập */
+    padding: 10px;
+    padding-bottom: 70px; /* Bắt buộc có để Tải App không bị menu dưới che khuất */
+}
+.game-area::-webkit-scrollbar { display: none; }
+
+.game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.game-card { background-color: #fff; border-radius: 8px; border: 1px solid #e0ebf3; text-align: center; overflow: hidden; cursor: pointer; }
+.game-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+.game-card p { font-size: 11px; color: #555; padding: 8px 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* =========================================
+   7. PHẦN TẢI APP
+   ========================================= */
+.download-app-section {
+    margin-top: 20px; background: linear-gradient(to bottom, #f2fbfc, #e5f6fa); border-radius: 8px;
+    padding: 15px;
+}
+.download-header { color: #00a2b8; font-size: 16px; font-weight: bold; display: flex; align-items: center; margin-bottom: 15px; }
+.download-header i { font-size: 20px; margin-right: 8px; }
+.download-links { display: flex; justify-content: space-around; text-align: center; position: relative; z-index: 2; }
+.download-item p { color: #00a2b8; font-size: 12px; font-weight: bold; margin-bottom: 8px; }
+.download-item img { height: 40px; width: auto; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.download-banner { margin-top: 15px; text-align: center; display: flex; justify-content: center; }
+.download-banner img { width: 100%; max-width: 400px; display: block; margin: 0 auto; }
+
+/* =========================================
+   8. THANH ĐIỀU HƯỚNG DƯỚI CÙNG (BOTTOM NAV)
+   ========================================= */
+.bottom-nav {
+    position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: space-around;
+    background-color: #008b9c; padding: 10px 0; border-top: 2px solid #006f7c;
+    z-index: 10; /* Z-index cao nhất để đè lên mọi thứ khi cuộn */
+}
+.nav-item { display: flex; flex-direction: column; align-items: center; color: #aae0e8; text-decoration: none; font-size: 10px; }
+.nav-item i { font-size: 20px; margin-bottom: 3px; }
+.nav-item.active, .nav-item:hover { color: #fff; }
+/* =========================================
+   8. ĐẠI SỨ THƯƠNG HIỆU
+   ========================================= */
+.ambassador-section {
+    margin-top: 20px;
+    background-color: transparent;
+}
+
+/* Tiêu đề "Đại Sứ Thương Hiệu" */
+.ambassador-title {
+    color: #008b9c; /* Màu xanh ngọc đậm */
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Các hàng danh sách chữ ký */
+.ambassador-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Chia chính xác làm 3 cột bằng nhau */
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #d1e5ef; /* Đường gạch mờ phân cách */
+}
+.ambassador-row:last-child {
+    border-bottom: none; /* Dòng cuối không cần gạch dưới */
+}
+
+/* Định dạng Tên, Năm và Chữ ký */
+.amb-name {
+    color: #008b9c;
+    font-weight: bold;
+    font-size: 12px;
+}
+.amb-year {
+    color: #00a2b8;
+    font-size: 11px;
+    text-align: center;
+}
+.amb-sign {
+    height: 25px; /* Giới hạn độ cao để chữ ký không bị quá to */
+    width: auto;
+    justify-self: end; /* Đẩy chữ ký sát vào lề phải */
+    object-fit: contain;
+}
+
+/* Tiêu đề phần News */
+.news-header {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.badge-news {
+    background-color: #00a2b8;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+.news-header h4 {
+    color: #008b9c;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Khu vực hiển thị 2 ảnh chiến dịch */
+.news-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Khoảng cách giữa 2 ảnh */
+}
+.news-cards img {
+    width: 100%;
+    border-radius: 12px; /* Bo góc cong mềm mại giống bản thiết kế */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Đổ bóng cực nhẹ */
+}
+/* =========================================
+   9. PHẦN FOOTER (GIẤY PHÉP, MXH, BÀI VIẾT)
+   ========================================= */
+.footer-info-section {
+    margin-top: 20px;
+    padding: 0 10px; /* Căn lề hai bên cho gọn */
+    position: relative;
+}
+
+/* Lưới chia 2 cột cho các logo */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia 2 cột đều nhau */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-block h4 {
+    color: #008b9c; /* Màu xanh biển đậm */
+    font-size: 11px;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+/* Chỉnh kích thước chung cho các khối ảnh logo */
+.footer-block img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Riêng phần icon mạng xã hội nằm ngang */
+.social-icons {
+    display: flex;
+    gap: 8px;
+}
+.social-icons img {
+    width: 28px; /* Độ to của icon tròn MXH */
+    height: 28px;
+    border-radius: 50%; /* Bo tròn nếu ảnh là hình vuông */
+}
+
+/* Định dạng khu vực bài viết (SEO Text) */
+.seo-text-container {
+    color: #008b9c;
+    font-size: 11px; /* Chữ nhỏ để không chiếm quá nhiều diện tích */
+    line-height: 1.5;
+    text-align: justify; /* Căn đều 2 bên cho đẹp mắt */
+    padding-bottom: 10px;
+}
+
+.seo-text-container h3 {
+    color: #00a2b8; /* Chữ tiêu đề nổi bật hơn chút */
+    font-size: 13px;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+}
+
+.seo-text-container p {
+    margin-bottom: 10px;
+}
+
+.seo-text-container strong {
+    color: #007685;
+}
+
+/* Nút mũi tên gập mở ở dưới đáy (giống trong ảnh) */
+.collapse-btn {
+    width: 60px;
+    height: 15px;
+    background-color: #8bbdc7; /* Màu xanh xám nhạt */
+    color: white;
+    margin: 0 auto 10px auto;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    cursor: pointer;
+}
+/* =========================================
+   10. MODAL ĐĂNG NHẬP / ĐĂNG KÝ (STYLE MỚI)
+   ========================================= */
+.modal-overlay {
+    display: none; /* Mặc định ẩn, chỉ bật bằng JS */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 9999;
+    justify-content: center; align-items: center;
+}
+
+.modal-content.shbet-theme {
+    background: linear-gradient(to bottom, #eaf9fb, #d4f3f9); /* Màu nền xanh ngọc nhạt */
+    width: 90%; max-width: 400px;
+    border-radius: 12px;
+    position: relative;
+    padding: 20px 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Nút tắt X */
+.close-btn {
+    position: absolute; top: 15px; right: 15px;
+    font-size: 22px; color: #008b9c; cursor: pointer;
+}
+
+/* Logo trong form */
+.modal-logo { text-align: center; margin-bottom: 15px; }
+.modal-logo img { height: 45px; object-fit: contain; }
+.modal-logo img { 
+    height: 45px; 
+    object-fit: contain; 
+    margin-left: 125px; /* Đẩy logo lệch sang phải 85px */
+}
+.modal-logo p { font-size: 20px; color: #00a2b8; font-weight: bold; margin-top: 5px; letter-spacing: 0.5px; }
+
+/* Nút chuyển tab (Đăng ký / Đăng nhập) */
+.shbet-tabs {
+    display: flex; border: 1px solid #00a2b8; border-radius: 30px;
+    overflow: hidden; margin-bottom: 15px; background: #fff;
+}
+.shbet-tab-btn {
+    flex: 1; text-align: center; padding: 10px 0;
+    font-weight: bold; font-size: 14px; color: #00a2b8; cursor: pointer;
+    transition: 0.3s;
+}
+.shbet-tab-btn.active { background-color: #00a2b8; color: #fff; }
+
+/* Form ẩn / hiện */
+.shbet-form { display: none; }
+.shbet-form.active { display: block; }
+
+/* Các ô nhập liệu */
+.input-group { margin-bottom: 12px; position: relative; }
+.input-group input {
+    width: 100%; padding: 12px 15px;
+    border: 1px solid #bce1e8; border-radius: 8px;
+    font-size: 13px; outline: none; color: #333;
+}
+.input-group input:focus { border-color: #00a2b8; }
+.input-group.has-icon input { padding-right: 40px; }
+.input-group .toggle-pw {
+    position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+    color: #666; cursor: pointer;
+}
+
+/* Cụm nhập số điện thoại (Có mã vùng) */
+.phone-group { 
+    display: flex; align-items: center; background: #fff; 
+    border: 1px solid #bce1e8; border-radius: 8px; overflow: hidden; 
+}
+.phone-group input { border: none; padding-left: 10px; border-radius: 0; }
+.phone-prefix { 
+    display: flex; align-items: center; padding: 0 10px; 
+    font-size: 13px; font-weight: bold; border-right: 1px solid #bce1e8; 
+    color: #b80000ef; background: #f8fcfd; height: 100%;
+}
+
+/* Chữ nhắc nhở & Checkbox */
+.warning-text { color: red; font-size: 11px; margin-bottom: 10px; }
+.checkbox-group { display: flex; align-items: center; font-size: 12px; margin-bottom: 15px; color: #333; }
+.checkbox-group input { margin-right: 8px; }
+.checkbox-group a { color: #00a2b8; text-decoration: underline; cursor: pointer; }
+.security-notice { text-align: center; font-size: 11px; color: #555; margin-bottom: 15px; line-height: 1.4; }
+
+/* Nút Submit mặc định (Khi CHƯA điền đủ form) */
+.submit-btn {
+    width: 100%; padding: 12px; border: none; border-radius: 30px;
+    color: #fff; font-weight: bold; font-size: 15px; transition: 0.3s;
+    
+    /* Làm nút nhạt màu và hiển thị con trỏ cấm */
+    opacity: 0.6; 
+    cursor: not-allowed; 
+}
+.btn-reg { background-color: #5dc3d6; } /* Màu mặc định nhạt */
+.btn-log { background-color: #3dd3eb; } /* Màu mặc định nhạt */
+
+
+/* Trạng thái KHI ĐÃ ĐIỀN XONG FORM (Hết disabled) */
+.submit-btn:not(:disabled) {
+    opacity: 1; /* Sáng rõ 100% */
+    cursor: pointer; /* Chuột biến thành bàn tay */
+}
+/* Đậm màu lên khi form hợp lệ */
+.btn-reg:not(:disabled) { background-color: #00bdda; } 
+.btn-log:not(:disabled) { background-color: #00bcdd; }
