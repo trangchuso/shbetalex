@@ -33,9 +33,9 @@ img { max-width: 100%; display: block; }
     background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 .icon-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; justify-content: center; align-items: center; }
-.icon-btn img { width: 32px; height: auto; object-fit: contain; }
+.icon-btn img { width: 40px; height: auto; object-fit: contain; }
 .logo { flex: 1; text-align: center; }
-.logo img { height: 35px; margin: 0 auto; object-fit: contain; }
+.logo img { height: 55px; margin: 0 auto; object-fit: contain; }
 
 /* =========================================
    2. BANNER & 3. TICKER & 4. AUTH TABS
@@ -127,7 +127,7 @@ img { max-width: 100%; display: block; }
     z-index: 10; /* Z-index cao nhất để đè lên mọi thứ khi cuộn */
 }
 .nav-item { display: flex; flex-direction: column; align-items: center; color: #aae0e8; text-decoration: none; font-size: 10px; }
-.nav-item i { font-size: 20px; margin-bottom: 3px; }
+.nav-item i { font-size: 30px; margin-bottom: 3px; }
 .nav-item.active, .nav-item:hover { color: #fff; }
 /* =========================================
    8. ĐẠI SỨ THƯƠNG HIỆU

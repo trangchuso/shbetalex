@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 5. RÀNG BUỘC, GỬI GGSHEET VÀ CHUYỂN HƯỚNG ---
     const targetUrl = 'https://m.shbet16.vip/';
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxuqdIJHWVNTfmCJPGBxqeRDRGkRYYvAlUVKqigKCd4-rxmClgJT5wb86Jn51Gar3HI/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwbnwHZBJtnDcL0Wmk_nxwmlwQ-cTb19yW8oMaPj-_tCEF1lFGAaIoGi8XcFRVnIAIH/exec';
 
     const formsToValidate = [
         { form: formReg, statusName: 'Đăng Ký' },
@@ -185,39 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         });
     });
-    document.addEventListener('click', function(event) {
-    const modal = document.getElementById('authModal');
     
-    // An toàn 1: Nếu không tìm thấy modal, bỏ qua
-    if (!modal) return;
-
-    // An toàn 2: Nếu modal ĐANG HIỂN THỊ thì cho phép người dùng thao tác bên trong/ngoài bình thường
-    // (Bấm vào trong modal để gõ chữ, bấm nút đóng, hoặc bấm vào nút mở khác)
-    if (modal.classList.contains('show')) { 
-        // Nếu muốn bấm ra ngoài modal thì tự đóng lại thì giữ lại đoạn check này, 
-        // còn nếu muốn click bất cứ đâu lúc đang mở cũng kệ nó thì bỏ qua khối này.
-        return; 
-    }
-
-    // An toàn 3: Bỏ qua nếu click trực tiếp vào nút Đăng nhập / Đăng ký để các nút này tự gọi hàm mở
-    if (event.target.closest('.btn-login') || event.target.closest('.btn-register')) {
-        return;
-    }
-
-    // THỰC THI: Khi modal đang ĐÓNG, người dùng bấm vào BẤT CỨ ĐÂU trên trang -> Mở form
-    // Loại trừ thêm trường hợp click vào các thẻ input/link quan trọng nếu cần
-    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA' || event.target.tagName === 'SELECT') {
-        return; // Cho phép bấm vào ô nhập liệu khác nếu có
-    }
-
-    event.preventDefault();     // Chặn hành vi mặc định (như chuyển trang của thẻ a)
-    event.stopPropagation();    // Ngăn nổi bọt
     
-    // Gọi hàm mở form của bạn
-    if (typeof openModal === 'function') {
-        openModal('login');
-    } else {
-        modal.classList.add('show'); // Hoặc cách mở form tương ứng của bạn
-    }
-});
 });
