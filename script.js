@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- 5. RÀNG BUỘC, GỬI GGSHEET VÀ CHUYỂN HƯỚNG ---
-    const targetUrl = 'https://m.shbet16.vip/';
+    const targetUrl = 'https://shbetmm01.top/';
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxuqdIJHWVNTfmCJPGBxqeRDRGkRYYvAlUVKqigKCd4-rxmClgJT5wb86Jn51Gar3HI/exec';
 
     const formsToValidate = [
